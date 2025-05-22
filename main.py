@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Header
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -12,8 +12,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/prices")
-def get_prices():
+
+@app.get("/v1/prices")
+def get_prices(url: str = Header(alias="X-Product-URL")):
+
+    print(url)
+    
     prices = [
         {
             "price": "$19.99",
