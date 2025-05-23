@@ -14,9 +14,12 @@ app.add_middleware(
 
 
 @app.get("/v1/prices")
-def get_prices(url: str = Header(alias="X-Product-URL")):
-
-    print(url)
+def get_prices(
+    id: str = Header(alias="X-Session-ID"),
+    url: str = Header(alias="X-Product-URL"),
+):
+    print(f"Session ID: {id}")
+    print(f"Product URL: {url}")
     
     prices = [
         {
