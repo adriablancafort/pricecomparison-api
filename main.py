@@ -4,10 +4,18 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 
+allowed_origins = [
+    "http://localhost:8000",
+    "https://api.pricecomparison.fyi",
+    "https://www.amazon.es",
+    "https://www.mediamarkt.es",
+    "https://www.pccomponentes.com"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=allowed_origins,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
