@@ -25,7 +25,7 @@ Save Time and Money — Instantly Compare Prices and Find Better Deals from Othe
 
 1. Start the development server:
    ```bash
-   uvicorn main:app --reload --host 0.0.0.0 --port 8000
+   python3 -m uvicorn main:app --reload
    ```
 
 2. The API will be available at `http://localhost:8000`
