@@ -1,30 +1,23 @@
-from fastapi import FastAPI, Header
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from models import PriceRequest
 
 app = FastAPI()
 
-
-allowed_origins = [
-    "http://localhost:8000",
-    "https://api.pricecomparison.fyi",
-    "https://www.amazon.es",
-    "https://www.mediamarkt.es",
-    "https://www.pccomponentes.com"
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
-@app.get("/v1/prices")
-def get_prices(url: str = Header(alias="X-Product-URL")):
-
-    print(url)
+@app.post("/v1/prices")
+def get_prices(price: PriceRequest):
+    print(f"Searching prices for: {price.title}")
+    print(f"Original URL: {price.url}")
+    print(f"Original price: ${price.price}")
     
     prices = [
         {
@@ -44,4 +37,4 @@ def get_prices(url: str = Header(alias="X-Product-URL")):
         }
     ]
 
-    return prices
+    return {"prices": prices}
