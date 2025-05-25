@@ -21,7 +21,6 @@ def get_prices(price: PriceRequest):
     print(f"Currency: {price.currency}")
     print(f"SKU: {price.sku}")
     print(f"Brand: {price.brand}")
-    print(f"Description: {price.description}")
     print(f"Category: {price.category}")
     print(f"Image: {price.image}")
     print(f"Condition: {price.condition}")

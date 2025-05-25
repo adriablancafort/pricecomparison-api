@@ -8,7 +8,6 @@ class PriceRequest(BaseModel):
     currency: Optional[str] = None
     sku: Optional[str] = None
     brand: Optional[str] = None
-    description: Optional[str] = None
     category: Optional[str] = None
     image: Optional[str] = None
     condition: Optional[str] = None
