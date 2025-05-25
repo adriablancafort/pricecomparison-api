@@ -34,7 +34,7 @@ def get_prices(price: PriceRequest):
             "price": "819.00€",
             "thumbnail_url": "https://thumb.pccomponentes.com/w-44-44/articles/1085/10855023/1530-apple-iphone-16-128gb-rosa-caracteristicas.jpg",
             "retailer_name": "PC Componentes",
-            "retailer_logo_url": "hhttps://cdn.pccomponentes.com/img/favicons/favicon.png"
+            "retailer_logo_url": "https://cdn.pccomponentes.com/img/favicons/favicon.png"
         },
         {
             "url": "https://www.tradeinn.com/techinn/es/apple-iphone-16-128gb-6.1/141410946/p",
