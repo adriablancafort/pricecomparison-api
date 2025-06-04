@@ -13,9 +13,13 @@ class PriceRequest(BaseModel):
     condition: Optional[str] = None
     availability: Optional[str] = None
     rating: Optional[float] = None
-    reviewCount: Optional[int] = None
+    review_count: Optional[int] = None
     seller: Optional[str] = None
-    originalPrice: Optional[float] = None
+    original_price: Optional[float] = None
+    country: Optional[str] = None
+    country_code: Optional[str] = None
+    region: Optional[str] = None
+    region_code: Optional[str] = None
 
 class PriceResponse(BaseModel):
     url: str

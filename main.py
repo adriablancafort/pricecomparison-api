@@ -26,9 +26,13 @@ def get_prices(price: PriceRequest):
     print(f"Condition: {price.condition}")
     print(f"Availability: {price.availability}")
     print(f"Rating: {price.rating}")
-    print(f"Review Count: {price.reviewCount}")
+    print(f"Review Count: {price.review_count}")
     print(f"Seller: {price.seller}")
-    print(f"Original Price: {price.originalPrice}")
+    print(f"Original Price: {price.original_price}")
+    print(f"Country: {price.country}")
+    print(f"Country Code: {price.country_code}")
+    print(f"Region: {price.region}")
+    print(f"Region Code: {price.region_code}")
     
     prices = [
         {
