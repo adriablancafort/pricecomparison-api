@@ -39,18 +39,21 @@ def get_prices(price: PriceRequest):
             "url": "https://www.mediamarkt.es/es/product/_apple-iphone-16-rosa-128-gb-5g-61-oled-super-retina-xdr-chip-a18-bionic-ios-1582152.html",
             "title": "Apple iPhone 16, Rosa, 128 GB, 5G, 6.1 OLED Super Retina XDR, Chip A18 Bionic, iOS",
             "price": "799.00€",
+            "savings": "20.00€",
             "retailer_icon_url": "https://www.mediamarkt.es/public/manifest/favicon-Media-48x48.png"
         },
         {
             "url": "https://www.pccomponentes.com/movil-apple-iphone-16-128gb-rosa",
             "title": "Apple iPhone 16 128GB Rosa",
             "price": "819.00€",
+            "savings": "10.00€",
             "retailer_icon_url": "https://cdn.pccomponentes.com/img/favicons/favicon.png"
         },
         {
             "url": "https://www.tradeinn.com/techinn/es/apple-iphone-16-128gb-6.1/141410946/p",
             "title": "Apple IPhone 16 128GB 6.1",
             "price": "878.99€",
+            "savings": "5.00€",
             "retailer_icon_url": "https://www.tradeinn.com/web/favicon_0.ico"
         }
     ]
