@@ -50,6 +50,13 @@ def get_prices(price: PriceRequest):
             "retailer_icon_url": "https://cdn.pccomponentes.com/img/favicons/favicon.png"
         },
         {
+            "url": "https://www.elcorteingles.es/electronica/A52957672-apple-iphone-16-movil-libre/?parentCategoryId=999.51569013&color=Negro",
+            "title": "Apple iPhone 16 móvil libre",
+            "price": "819.00€",
+            "savings": "10€",
+            "retailer_icon_url": "https://cdn.grupoelcorteingles.es/statics/front-msh3-eci-es/assets//stylesheets/favicons/vuestore/favicon.svg"
+        },
+        {
             "url": "https://www.tradeinn.com/techinn/es/apple-iphone-16-128gb-6.1/141410946/p",
             "title": "Apple IPhone 16 128GB 6.1",
             "price": "878.99€",
