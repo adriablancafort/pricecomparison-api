@@ -28,7 +28,7 @@ def get_prices(price: PriceRequest):
     return {"prices": prices}
 
 
-@app.get("/v1/click")
+@app.get("/c")
 def track_click(url: str = Query(...)):
     """Track click and redirect to the provided URL"""
 

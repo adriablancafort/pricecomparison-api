@@ -47,7 +47,7 @@ def process_prices(kelkoo_data, original_price=None):
         
         # Get original URL and create tracking URL
         original_url = offer.get('offerUrl', {}).get('landingUrl', '').split('?')[0]
-        tracking_url = f"{API_BASE_URL}/v1/click?url={quote(original_url)}"
+        tracking_url = f"{API_BASE_URL}/c?url={quote(original_url)}"
         
         # Generate favicon URL from the retailer domain
         domain = urlparse(original_url).netloc
