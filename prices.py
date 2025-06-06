@@ -37,9 +37,11 @@ def process_prices(kelkoo_data, original_price=None):
     prices = []
     for offer in kelkoo_data.get('offers', []):
         offer_price = offer.get('price', 0)
-        
+
+        lower_price_limit = 0.7 * original_price
+
         # Skip prices higher than original price
-        if offer_price > original_price:
+        if offer_price > original_price or offer_price < lower_price_limit:
             continue
         
         # Calculate savings
@@ -57,7 +59,7 @@ def process_prices(kelkoo_data, original_price=None):
             "url": tracking_url,
             "title": offer.get('title', ''),
             "price": f"{offer_price:.2f}€",
-            "savings": f"{savings}€" if savings > 0 else "0€",
+            "savings": f"{savings}€",
             "retailer_icon_url": favicon_url,
             "price_value": offer_price  # For sorting
         }
