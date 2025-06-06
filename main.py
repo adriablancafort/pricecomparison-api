@@ -24,7 +24,7 @@ def get_prices(price: PriceRequest):
     print(f"Price: {price.price}")
     print(f"Country Code: {price.country_code}")
 
-    prices = fetch_prices(query=price.title, country_code=price.country_code, original_price=price.price)
+    prices = fetch_prices(query=price.title, country_code=price.country_code, original_price=price.price, original_url=price.url)
     return {"prices": prices}
 
 

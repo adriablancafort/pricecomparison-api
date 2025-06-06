@@ -31,9 +31,11 @@ def fetch_kelkoo_api(query, country_code, page_size=10):
         return None
 
 
-def process_prices(kelkoo_data, original_price=None):
+def process_prices(kelkoo_data, original_price, original_url):
     """Process Kelkoo API data into formatted price list"""
     
+    original_domain = urlparse(original_url).netloc.lower()
+
     prices = []
     for offer in kelkoo_data.get('offers', []):
         offer_price = offer.get('price', 0)
@@ -44,16 +46,21 @@ def process_prices(kelkoo_data, original_price=None):
         if offer_price > original_price or offer_price < lower_price_limit:
             continue
         
+        offer_url = offer.get('offerUrl', {}).get('landingUrl', '').split('?')[0]
+        offer_domain = urlparse(offer_url).netloc.lower()
+
+        # Skip if same retailer as original
+        if offer_domain == original_domain:
+            continue
+        
         # Calculate savings
         savings = round(original_price - offer_price)
         
-        # Get original URL and create tracking URL
-        original_url = offer.get('offerUrl', {}).get('landingUrl', '').split('?')[0]
-        tracking_url = f"{API_BASE_URL}/c?url={quote(original_url)}"
+        # Create tracking URL
+        tracking_url = f"{API_BASE_URL}/c?url={quote(offer_url)}"
         
         # Generate favicon URL from the retailer domain
-        domain = urlparse(original_url).netloc
-        favicon_url = f"https://www.google.com/s2/favicons?domain={domain}&sz=48"
+        favicon_url = f"https://www.google.com/s2/favicons?domain={offer_domain}&sz=48"
 
         price_data = {
             "url": tracking_url,
@@ -73,11 +80,11 @@ def process_prices(kelkoo_data, original_price=None):
     return prices
 
 
-def fetch_prices(query='iPhone 16', country_code='es', page_size=8, original_price=1000):
+def fetch_prices(query='iPhone 16', country_code='es', page_size=8, original_price=1000, original_url=""):
     """Fetch and process prices from Kelkoo API"""
 
     kelkoo_data = fetch_kelkoo_api(query, country_code, page_size)
-    return process_prices(kelkoo_data, original_price)
+    return process_prices(kelkoo_data, original_price, original_url)
 
 
 if __name__ == "__main__":
