@@ -16,10 +16,7 @@ class PriceRequest(BaseModel):
     review_count: Optional[int] = None
     seller: Optional[str] = None
     original_price: Optional[float] = None
-    country: Optional[str] = None
     country_code: Optional[str] = None
-    region: Optional[str] = None
-    region_code: Optional[str] = None
 
 class PriceResponse(BaseModel):
     url: str
