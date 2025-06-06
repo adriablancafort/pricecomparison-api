@@ -21,6 +21,11 @@ Save Time and Money — Instantly Compare Prices and Find Better Deals from Othe
    pip install -r requirements.txt
    ```
 
+4. Create a `.env` file in the project root:
+   ```
+   API_BASE_URL=
+   ```
+
 ### Development
 
 1. Start the development server:

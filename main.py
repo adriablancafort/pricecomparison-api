@@ -1,6 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from models import PriceRequest
+from prices import fetch_prices
 
 app = FastAPI()
 
@@ -15,54 +17,20 @@ app.add_middleware(
 
 @app.post("/v1/prices")
 def get_prices(price: PriceRequest):
+    """Return a list of retailers selling the same product at an equal or lower price"""
+
     print(f"URL: {price.url}")
     print(f"Title: {price.title}")
     print(f"Price: {price.price}")
-    print(f"Currency: {price.currency}")
-    print(f"SKU: {price.sku}")
-    print(f"Brand: {price.brand}")
-    print(f"Category: {price.category}")
-    print(f"Image: {price.image}")
-    print(f"Condition: {price.condition}")
-    print(f"Availability: {price.availability}")
-    print(f"Rating: {price.rating}")
-    print(f"Review Count: {price.review_count}")
-    print(f"Seller: {price.seller}")
-    print(f"Original Price: {price.original_price}")
-    print(f"Country: {price.country}")
     print(f"Country Code: {price.country_code}")
-    print(f"Region: {price.region}")
-    print(f"Region Code: {price.region_code}")
-    
-    prices = [
-        {
-            "url": "https://www.mediamarkt.es/es/product/_apple-iphone-16-rosa-128-gb-5g-61-oled-super-retina-xdr-chip-a18-bionic-ios-1582152.html",
-            "title": "Apple iPhone 16, Rosa, 128 GB, 5G, 6.1 OLED Super Retina XDR, Chip A18 Bionic, iOS",
-            "price": "799.00€",
-            "savings": "20€",
-            "retailer_icon_url": "https://www.mediamarkt.es/public/manifest/favicon-Media-48x48.png"
-        },
-        {
-            "url": "https://www.pccomponentes.com/movil-apple-iphone-16-128gb-rosa",
-            "title": "Apple iPhone 16 128GB Rosa",
-            "price": "819.00€",
-            "savings": "10€",
-            "retailer_icon_url": "https://cdn.pccomponentes.com/img/favicons/favicon.png"
-        },
-        {
-            "url": "https://www.elcorteingles.es/electronica/A52957672-apple-iphone-16-movil-libre/?parentCategoryId=999.51569013&color=Negro",
-            "title": "Apple iPhone 16 móvil libre",
-            "price": "819.00€",
-            "savings": "10€",
-            "retailer_icon_url": "https://cdn.grupoelcorteingles.es/statics/front-msh3-eci-es/assets//stylesheets/favicons/vuestore/favicon.svg"
-        },
-        {
-            "url": "https://www.tradeinn.com/techinn/es/apple-iphone-16-128gb-6.1/141410946/p",
-            "title": "Apple IPhone 16 128GB 6.1",
-            "price": "878.99€",
-            "savings": "5€",
-            "retailer_icon_url": "https://www.tradeinn.com/web/favicon_0.ico"
-        }
-    ]
 
+    prices = fetch_prices(query=price.title, country_code=price.country_code, original_price=price.price)
     return {"prices": prices}
+
+
+@app.get("/v1/click")
+def track_click(url: str = Query(...)):
+    """Track click and redirect to the provided URL"""
+
+    print(f"Click: {url}")
+    return RedirectResponse(url=url, status_code=302)
