@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -49,12 +49,16 @@ def process_prices(kelkoo_data, original_price=None):
         original_url = offer.get('offerUrl', {}).get('landingUrl', '').split('?')[0]
         tracking_url = f"{API_BASE_URL}/v1/click?url={quote(original_url)}"
         
+        # Generate favicon URL from the retailer domain
+        domain = urlparse(original_url).netloc
+        favicon_url = f"https://www.google.com/s2/favicons?domain={domain}&sz=48"
+
         price_data = {
             "url": tracking_url,
             "title": offer.get('title', ''),
             "price": f"{offer_price:.2f}€",
             "savings": f"{savings}€" if savings > 0 else "0€",
-            "retailer_icon_url": offer.get('merchant', {}).get('logoUrl', ''),
+            "retailer_icon_url": favicon_url,
             "price_value": offer_price  # For sorting
         }
         prices.append(price_data)
