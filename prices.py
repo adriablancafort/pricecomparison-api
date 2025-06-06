@@ -1,12 +1,6 @@
 import requests
 import json
-import os
-from urllib.parse import quote, urlparse
-from dotenv import load_dotenv
-
-load_dotenv()
-
-API_BASE_URL = os.getenv('API_BASE_URL')
+from urllib.parse import urlparse
 
 
 def fetch_kelkoo_api(query, country_code, page_size=10):
@@ -56,14 +50,11 @@ def process_prices(kelkoo_data, original_price, original_url):
         # Calculate savings
         savings = round(original_price - offer_price)
         
-        # Create tracking URL
-        tracking_url = f"{API_BASE_URL}/c?url={quote(offer_url)}"
-        
         # Generate favicon URL from the retailer domain
         favicon_url = f"https://www.google.com/s2/favicons?domain={offer_domain}&sz=48"
 
         price_data = {
-            "url": tracking_url,
+            "url": offer_url,
             "title": offer.get('title', ''),
             "price": f"{offer_price:.2f}€",
             "savings": f"{savings}€",

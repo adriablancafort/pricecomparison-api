@@ -26,11 +26,3 @@ def get_prices(price: PriceRequest):
 
     prices = fetch_prices(query=price.title, country_code=price.country_code, original_price=price.price, original_url=price.url)
     return {"prices": prices}
-
-
-@app.get("/c")
-def track_click(url: str = Query(...)):
-    """Track click and redirect to the provided URL"""
-
-    print(f"Click: {url}")
-    return RedirectResponse(url=url, status_code=302)
