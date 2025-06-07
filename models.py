@@ -22,4 +22,5 @@ class PriceResponse(BaseModel):
     url: str
     title: str
     price: str
+    savings: str
     retailer_icon_url: str
